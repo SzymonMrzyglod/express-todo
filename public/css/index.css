@@ -10,7 +10,6 @@ html{
     font-family: roboto, arial, sans-serif;
     height: 100vh;
     background-color: #EAD7D7;
-
 }
 .app-title{
     color: rgba(0, 0, 0, .5);
@@ -103,11 +102,20 @@ html{
 .task-div:last-child{
     border-bottom: none;
 }
-.task-div p{
+.task-div-p,
+.task-date{
     text-align: center;
     align-self: center;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     width: 80%;
+}
+.task-date{
+    color: #ddd;
+    font-size: 1.6rem;
+    border-right: 1px solid #ddd;
+    order: -1;
+    width: 20%;
+    padding: 10px;
 }
 .btnDel,
 .activeBtn{
@@ -124,4 +132,21 @@ html{
 .active-false{
     color: #999;
     text-decoration:line-through;
+}
+
+@media (max-width: 1200px ) {
+    html{
+        font-size: 9px;
+    }
+    .task-div{
+        padding: 5px 10px;
+    }
+}
+@media (max-width: 1000px ) {
+    html{
+        font-size: 7px;
+    }
+    .task-div{
+        padding: 5px 10px;
+    }
 }

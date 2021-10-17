@@ -18,6 +18,7 @@ const getDataFromFile = async (req, res) => {
 
 const addTask = async (req, res) => {
     tasks.table.push(req.body)
+    
     try{
         await writeToFile(tasks.table)
     }catch(error){
@@ -27,8 +28,7 @@ const addTask = async (req, res) => {
 };
 
 const delTask = async(req, res) => {
-    const index = tasks.table.findIndex(obj => obj.task === req.body.name)
-
+    const index = tasks.table.findIndex(obj => obj.id === req.body.id)
     delete tasks.table[index];
 
     const newTasks = tasks.table.filter( task => task !== null);
@@ -42,7 +42,7 @@ const delTask = async(req, res) => {
 };
 
 const activeTask = async(req, res) => {
-    const index = tasks.table.findIndex(obj => obj.task === req.body.name)
+    const index = tasks.table.findIndex(obj => obj.id === req.body.id)
     
     tasks.table[index].active ?  
     tasks.table[index].active = false 

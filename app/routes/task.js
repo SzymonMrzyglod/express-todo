@@ -5,7 +5,7 @@ const {
     addTask,
     delTask,
     activeTask
-} = require('../controller/task-controller')
+} = require('../controllers/task-controller')
 
 taskRouter
     .get('/getJson', getDataFromFile)
