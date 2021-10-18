@@ -44,7 +44,6 @@ taskForm.addEventListener('submit', async e => {
 
 //----------Remove task----------
 const removeTask = async e => {
-    e.target.parentNode.setAttribute("disabled", true);
     const target = e.target.parentNode.parentNode.firstChild;
     const id = target.getAttribute('data-id');
     const res = await fetch('/task/delTask', {
@@ -81,14 +80,14 @@ const render = (data) => {
 }
 
 //----------Create a view----------
-const createDivElement = (item) => {
+const createDivElement = (active, item, id) => {
     const divElement = document.createElement('div');
     divElement.classList.add('task-div');
-    divElement.innerHTML = `<p class="active-${item.active} task-div-p" data-id="${item.id}">${item.task}</p>`;
+    divElement.innerHTML = `<p class="active-${active} task-div-p" data-id="${id}">${item.task}</p>`;
     
     const date = document.createElement('p');
     date.classList.add('task-date');
-    date.innerText = new Date(Number(item.id)).toLocaleString();
+    date.innerText = new Date(Number(id)).toLocaleString();
 
     const delBtn = document.createElement('button');
     delBtn.classList.add('btnDel');
@@ -113,12 +112,11 @@ const addListenerBtns = () => {
 }
 
 const createTaskView = (data) => {
-    data.forEach((item) => {
-        createDivElement(item);
+    
+    const newTasks = data.filter( task => task !== null);
+    console.log(newTasks);
+    newTasks.forEach((item) => {
+        createDivElement(item.active, item, item.id);
     });
     addListenerBtns();
 }
-
-
-
-
