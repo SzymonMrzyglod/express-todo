@@ -5,7 +5,7 @@ let delBtn;
 let activeBtn;
 
 //----------Downloading data from JSON file----------
-const getData = async () => {
+(async () => {
     await fetch ('/task/getJson')
 .then(res =>{
     return res.json()
@@ -13,7 +13,7 @@ const getData = async () => {
 .then(json => {
     createTaskView(JSON.parse(json))
 })
-};
+})();
 
 //----------Add new task----------
 taskForm.addEventListener('submit', async e => {
