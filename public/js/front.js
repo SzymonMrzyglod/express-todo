@@ -44,6 +44,7 @@ taskForm.addEventListener('submit', async e => {
 
 //----------Remove task----------
 const removeTask = async e => {
+    e.target.parentNode.setAttribute("disabled", true);
     const target = e.target.parentNode.parentNode.firstChild;
     const id = target.getAttribute('data-id');
     const res = await fetch('/task/delTask', {

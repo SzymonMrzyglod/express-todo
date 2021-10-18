@@ -3,9 +3,9 @@ const {writeFile, readFile} = require('fs').promises;
 const FILE_PATH = './app/data/task.json';
 const tasks = {table: []};
 
-const writeToFile = (tasksTable) => {
-    writeFile(FILE_PATH, JSON.stringify(tasksTable, null, 2))
-}
+const writeToFile = async (tasksTable) => {
+   await writeFile(FILE_PATH, JSON.stringify(tasksTable, null, 2))
+};
 
 const getDataFromFile = async (req, res) => {
     try{
@@ -20,25 +20,28 @@ const addTask = async (req, res) => {
     tasks.table.push(req.body)
     
     try{
-        await writeToFile(tasks.table)
+        writeToFile(tasks.table)
+        res.json(tasks.table)
     }catch(error){
         console.log(error);
     }
-    res.json(tasks.table)
 };
 
 const delTask = async(req, res) => {
+    
     const index = tasks.table.findIndex(obj => obj.id === req.body.id)
     delete tasks.table[index];
 
     const newTasks = tasks.table.filter( task => task !== null);
 
     try{
-        await writeToFile(newTasks)
+       writeToFile(newTasks)
+       res.json(newTasks)
     }catch(error){
-        console.log(error);
+        return console.log(error);
     }
-    res.json(newTasks)
+    
+
 };
 
 const activeTask = async(req, res) => {
@@ -50,11 +53,11 @@ const activeTask = async(req, res) => {
     tasks.table[index].active = true ;
 
     try{
-        await writeToFile(tasks.table);
+        writeToFile(tasks.table);
+        res.json(tasks.table)  
     }catch(error){
         console.log(error);
     }
-    res.json(tasks.table)  
 };
 
 (async () => {
