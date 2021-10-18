@@ -112,7 +112,6 @@ const addListenerBtns = () => {
 }
 
 const createTaskView = (data) => {
-    
     const newTasks = data.filter( task => task !== null);
     console.log(newTasks);
     newTasks.forEach((item) => {

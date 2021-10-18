@@ -25,8 +25,7 @@ const addTask = async (req, res) => {
         res.json(tasks.table)
     }catch(error){
         console.log(error);
-    }
-    
+    }  
 };
 
 const delTask = async(req, res) => {
