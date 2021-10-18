@@ -81,14 +81,14 @@ const render = (data) => {
 }
 
 //----------Create a view----------
-const createDivElement = (active, item, id) => {
+const createDivElement = (item) => {
     const divElement = document.createElement('div');
     divElement.classList.add('task-div');
-    divElement.innerHTML = `<p class="active-${active} task-div-p" data-id="${id}">${item.task}</p>`;
+    divElement.innerHTML = `<p class="active-${item.active} task-div-p" data-id="${item.id}">${item.task}</p>`;
     
     const date = document.createElement('p');
     date.classList.add('task-date');
-    date.innerText = new Date(Number(id)).toLocaleString();
+    date.innerText = new Date(Number(item.id)).toLocaleString();
 
     const delBtn = document.createElement('button');
     delBtn.classList.add('btnDel');
@@ -114,7 +114,7 @@ const addListenerBtns = () => {
 
 const createTaskView = (data) => {
     data.forEach((item) => {
-        createDivElement(item.active, item, item.id);
+        createDivElement(item);
     });
     addListenerBtns();
 }

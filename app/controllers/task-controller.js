@@ -28,7 +28,6 @@ const addTask = async (req, res) => {
 };
 
 const delTask = async(req, res) => {
-    
     const index = tasks.table.findIndex(obj => obj.id === req.body.id)
     delete tasks.table[index];
 
@@ -40,8 +39,6 @@ const delTask = async(req, res) => {
     }catch(error){
         return console.log(error);
     }
-    
-
 };
 
 const activeTask = async(req, res) => {
